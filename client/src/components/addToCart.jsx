@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import axios from 'axios';
-import url from '../../../config'
+import axios from "axios";
+import url from "../../../config";
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -20,46 +20,48 @@ class AddToCart extends React.Component {
     this.handleQtyClickSub = this.handleQtyClickSub.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getData();
   }
 
   handleQtyClickPlus() {
-    var newQty = this.state.qty += 1
+    var newQty = (this.state.qty += 1);
     this.setState({
       qty: newQty
-    })
+    });
   }
 
   handleQtyClickSub() {
     if (this.state.qty !== 1) {
-      var newQty = this.state.qty -= 1
+      var newQty = (this.state.qty -= 1);
       this.setState({
         qty: newQty
-      })
+      });
     }
   }
 
   getData() {
-    var x = window.location.href.split('/')[3]
-    if (x === '') {
-      x = '1';
+    var x = window.location.href.split("/")[3];
+    console.log(window.location.href);
+    if (x === "") {
+      x = "1";
     }
-    axios.get(`${url.url}/api/items/${x}`)
-    .then((data) => {
-      //console.log(data);
-      this.setState({
-        wishlists: data.data[0].onList,
-        priceProduct: data.data[0].priceProduct,
-        originalPrice: data.data[0].originalPrice,
-        savedCash: data.data[0].savedCash,
-        savedPcnt: data.data[0].savedPcnt
+    axios
+      .get(`${url.url}/api/items/${x}`)
+      .then(data => {
+        //console.log(data);
+        this.setState({
+          wishlists: data.data[0].onList,
+          priceProduct: data.data[0].priceProduct,
+          originalPrice: data.data[0].originalPrice,
+          savedCash: data.data[0].savedCash,
+          savedPcnt: data.data[0].savedPcnt
+        });
+        //console.log(data.data[0].onList)
       })
-      //console.log(data.data[0].onList)
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render() {
@@ -74,19 +76,16 @@ class AddToCart extends React.Component {
               </div>
             </div>
             <ul className="price-info">
-              <li className="price-was">
-                ${this.state.originalPrice}
-              </li>
+              <li className="price-was">${this.state.originalPrice}</li>
               <li className="price-current">
-                $ <strong>{this.state.priceProduct.toString().split('.')[0]}
+                ${" "}
+                <strong>
+                  {this.state.priceProduct.toString().split(".")[0]}
                 </strong>
-                <sup>.{this.state.priceProduct.toString().split('.')[1]}
-                </sup>
+                <sup>.{this.state.priceProduct.toString().split(".")[1]}</sup>
               </li>
               <li className="price-save">
-                <span className="price-save-label">
-                  Save: 
-                </span>
+                <span className="price-save-label">Save:</span>
                 <span className="price-save-dollar">
                   <span> ${this.state.savedCash} </span>
                   <span> </span>
@@ -98,35 +97,44 @@ class AddToCart extends React.Component {
                 </span>
               </li>
               <li className="price-ship">
-                    <span>$3.99 Shipping</span>
-                    <span> </span>
-                    <span className="note">
-                      <span>(</span>
-                      <a href="#">restrictions apply</a>
-                      <span>)</span>
-                    </span>
+                <span>$3.99 Shipping</span>
+                <span> </span>
+                <span className="note">
+                  <span>(</span>
+                  <a href="#">restrictions apply</a>
+                  <span>)</span>
+                </span>
               </li>
             </ul>
           </div>
         </div>
         {/* LANDING CART HERE */}
 
-
-
-
         <div id="landingpage-cart">
           <div className="nav-row">
             <div className="nav-col">
               <div className="qty-box">
-                <input type="text" maxLength="3" className="qty-field"
-                value={this.state.qty}/>
-                <button className="qty-box-plus"
-                onClick={this.handleQtyClickPlus}>
-                  <span className="hid-text"><strong>+</strong></span>
+                <input
+                  type="text"
+                  maxLength="3"
+                  className="qty-field"
+                  value={this.state.qty}
+                />
+                <button
+                  className="qty-box-plus"
+                  onClick={this.handleQtyClickPlus}
+                >
+                  <span className="hid-text">
+                    <strong>+</strong>
+                  </span>
                 </button>
-                <button className="qty-box-sub"
-                onClick={this.handleQtyClickSub}>
-                  <span className="hid-text"><strong>-</strong></span>
+                <button
+                  className="qty-box-sub"
+                  onClick={this.handleQtyClickSub}
+                >
+                  <span className="hid-text">
+                    <strong>-</strong>
+                  </span>
                 </button>
               </div>
               <div className="nav-col">
@@ -138,13 +146,11 @@ class AddToCart extends React.Component {
           </div>
         </div>
 
-
-
         {/* LANDING CART HERE */}
         <ul className="secondary">
           <li className="item-compare-box">
             <label className="btn-form-checkbox">
-              <input type="checkbox" className="compare-item"/>
+              <input type="checkbox" className="compare-item" />
               <span className="form-checkbox-title">Add To Compare</span>
             </label>
           </li>
@@ -158,9 +164,8 @@ class AddToCart extends React.Component {
               Add to Wishlist
             </a>
             <span className="item-wishlist-num">
-              Found on <strong> {this.state.wishlists}
-              </strong>
-               wishlists
+              Found on <strong> {this.state.wishlists}</strong>
+              wishlists
             </span>
           </li>
         </ul>
