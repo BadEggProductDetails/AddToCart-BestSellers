@@ -9,7 +9,7 @@ const pool = new Pool({
   host: "localhost",
   password: "sjm2358!",
   port: 5432,
-  database: "dummy"
+  database: "newegg"
 });
 
 const query1 = `CREATE TABLE product (

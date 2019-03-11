@@ -1,4 +1,10 @@
 module.exports = {
-  // url: 'http://ec2-3-17-205-65.us-east-2.compute.amazonaws.com'
-  url: "http://localhost:3011"
+  db: {
+    user: "ubuntu",
+    host: "18.222.250.118",
+    password: "sjm2358!",
+    port: 5432,
+    database: "newegg"
+  },
+  url: "http://3.17.251.224"
 };

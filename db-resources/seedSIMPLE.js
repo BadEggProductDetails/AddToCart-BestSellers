@@ -18,7 +18,7 @@ const db = pgp({
   host: "localhost",
   password: "sjm2358!",
   port: 5432,
-  database: "dummy"
+  database: "newegg"
 });
 
 let productStore = {};
@@ -72,10 +72,10 @@ function generateEntries() {
     product.country = generateRandomCountry(0, 3);
     //generate original price
     let multiplier = getRandomPcnt(1, 25);
-    let multipliedPrice = product.price * multiplier;
+    let multipliedPrice = product.priceProduct * multiplier;
     product.originalPrice = Math.round(multipliedPrice * 100) / 100;
     //generate the saved cash
-    let total = product.originalPrice - product.price;
+    let total = product.originalPrice - product.priceProduct;
     product.savedCash = Math.round(total * 100) / 100;
     //generate saved pcnt
     product.savedPcnt = Math.round((multiplier - 1) * 100);
@@ -119,7 +119,7 @@ function seed(start, cb) {
   let products = [];
   let competitors = [];
 
-  for (var i = start; i < start + 5000; i++) {
+  for (var i = start; i < start + 5; i++) {
     let id = getRandomInt(500);
     productStore[id].productID = i;
     products.push(productStore[id]);
@@ -154,16 +154,14 @@ function seed(start, cb) {
   ];
 
   (async () => {
-    let queryProduct =
-      pgp.helpers.insert(products, productsSchema, "product") +
-      `ON CONFLICT ON CONSTRAINT "product_pkey" 
-    DO NOTHING`;
+    let queryProduct = pgp.helpers.insert(products, productsSchema, "product");
     let queryCompetitors = pgp.helpers.insert(
       competitors,
       competitorsSchema,
       "competitors"
     );
     try {
+      console.log(queryProduct);
       let res = await db.none(queryProduct);
       let res2 = await db.none(queryCompetitors);
     } catch (error) {
@@ -177,5 +175,7 @@ function seed(start, cb) {
     // if (end < 10000000) chunk(start + 250000, end + 250000);
   })();
 }
+
+seed(7);
 
 module.exports = seed;

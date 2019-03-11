@@ -10,14 +10,9 @@ const morgan = require("morgan");
 const pgp = require("pg-promise")({
   capSQL: true // if you want all generated SQL capitalized
 });
+const cn = require("../config").db;
 
-const db = pgp({
-  user: "sjm",
-  host: "localhost",
-  password: "sjm2358!",
-  port: 5432,
-  database: "newegg"
-});
+const db = pgp(cn);
 
 app.use(parser.json());
 app.use(cors());
@@ -41,24 +36,18 @@ app.get("/api/items/:id", (req, res) => {
   //test that api path exists
   //console.log(req.params.id);
   db.any(
+    `select * from product p
+    inner join competitors c
+    on c."productID" = p."productID"
+    where p."productID"=${req.params.id}
     `
-    select * from competitors c
-    cross join product p
-    on c.productID = p.productID
-    where p.productID=${req.params.id}
-    `,
-    (err, data) => {
-      if (err) {
-        //test to see if there's an error
-        console.log(err, " error here");
-      } else {
-        //see if the expected data equals
-
-        res.send(data);
-        res.end();
-      }
-    }
-  );
+  )
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 app.listen(3011, () => {

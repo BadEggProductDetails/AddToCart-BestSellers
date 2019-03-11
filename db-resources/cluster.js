@@ -1,9 +1,20 @@
 const cluster = require("cluster");
 const http = require("http");
 const numCPUs = require("os").cpus().length;
-const seed = require("./seedSIMPLE");
+const seed = require("./seedScript");
 
-let counter = 1;
+function wrapCounter() {
+  let counter = 0;
+  return function(flag) {
+    if (flag) {
+      var counterOld = counter;
+      counter += 25000;
+      return counterOld;
+    } else return counter;
+  };
+}
+
+const incrementCounter = wrapCounter();
 
 if (cluster.isMaster) {
   console.log(`Master ${process.pid} is running`);
@@ -14,13 +25,13 @@ if (cluster.isMaster) {
   }
 
   cluster.on("listening", (worker, address) => {
-    seed((counter += 5000), () => {
+    seed(incrementCounter(true), () => {
       worker.kill();
     });
   });
 
   cluster.on("disconnect", (worker, code, signal) => {
-    if (counter < 100000) cluster.fork();
+    if (incrementCounter() < 10000000) cluster.fork();
   });
 
   cluster.on("exit", (worker, code, signal) => {
