@@ -67,6 +67,7 @@ app.get("/api/items/:id", async (req, res) => {
       );
       await redisClient.setAsync(productID, JSON.stringify(newData));
       res.send(newData);
+      res.end();
     }
   } catch (err) {
     console.log(err);
