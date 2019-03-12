@@ -30,6 +30,15 @@ app.get("*.css", (req, res, next) => {
   res.sendFile(path.join(__dirname + "/../client/dist/styles.css"));
 });
 
+app.get("/loaderio*", (req, res, next) => {
+  // res.type("text/css");
+  res.sendFile(
+    path.join(
+      __dirname + "/../server/loaderio-109ecc361f0ef8a80d17e47e23f2256c.txt"
+    )
+  );
+});
+
 app.use(express.static(path.join(__dirname + "/../client/dist")));
 
 app.get("/api/items/:id", (req, res) => {

@@ -1,7 +1,7 @@
 module.exports = {
   db: {
     user: "ubuntu",
-    host: "18.222.250.118",
+    host: "18.191.124.58",
     password: "sjm2358!",
     port: 5432,
     database: "newegg"
