@@ -40,7 +40,7 @@ app.get("/loaderio*", (req, res, next) => {
   // res.type("text/css");
   res.sendFile(
     path.join(
-      __dirname + "/../server/loaderio-4b81c5e2eec8f9af6e014aa51b9d03b7.txt"
+      __dirname + "/../server/loaderio-3932bfb07838612904f1b3891c4fd7d6.txt"
     )
   );
 });
