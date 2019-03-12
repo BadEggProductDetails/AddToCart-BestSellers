@@ -9,7 +9,7 @@ app:
   # volumes:
   #   - ./:/var/www/app
   ports:
-    - 3011:3011
+    - 80:3011
   links:
     - redis
   environment:
