@@ -9,11 +9,11 @@ class AddToCart extends React.Component {
     this.state = {
       qty: 1,
       onList: 0,
-      priceProduct: 0,
-      originalPrice: 0,
-      savedCash: 0,
-      savedPcnt: 0,
-      wishlists: 0
+      wishlists: this.props.productInfo.onList || 0,
+      priceProduct: this.props.productInfo.priceProduct || 0,
+      originalPrice: this.props.productInfo.originalPrice || 0,
+      savedCash: this.props.productInfo.savedCash || 0,
+      savedPcnt: this.props.productInfo.savedPcnt || 0
     };
     this.getData = this.getData.bind(this);
     this.handleQtyClickPlus = this.handleQtyClickPlus.bind(this);
