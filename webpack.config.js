@@ -19,7 +19,7 @@ const common = {
 };
 
 const client = {
-  entry: "./client/src/index.jsx",
+  entry: "./client/src/client.js",
   output: {
     path: path.resolve(__dirname, "client/dist"),
     filename: "bundle.js"
@@ -27,7 +27,7 @@ const client = {
 };
 
 const server = {
-  entry: "./client/src/index.jsx",
+  entry: "./client/src/server.js",
   target: "node",
   output: {
     path: path.resolve(__dirname, "client/dist"),
