@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const pgp = require("pg-promise")({
   capSQL: true // if you want all generated SQL capitalized
 });
+
 const redisClient = require("./redis-client");
 const app = express();
 const PORT = process.env.PORT || 3011;
@@ -89,12 +90,3 @@ app.get("/api/items/:id", async (req, res) => {
 app.listen(PORT, () => {
   console.log("Server listening on port 3011!");
 });
-
-/*
-
-  select * from competitors
-  inner join product
-  on competitors.productID = product.productID
-  where product.productID=5
-
-*/
