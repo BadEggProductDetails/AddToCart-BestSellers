@@ -1,31 +1,42 @@
-const webpack = require('webpack');
-const path = require('path');
-var CompressionPlugin = require('compression-webpack-plugin');
+const webpack = require("webpack");
+const path = require("path");
+var CompressionPlugin = require("compression-webpack-plugin");
 
-const config = {
-  entry: './client/src/index.jsx',
-  output: {
-    path: path.resolve(__dirname, 'client/dist'),
-    filename: 'bundle.js'
-  },
+const common = {
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        use: 'babel-loader',
+        use: "babel-loader",
         exclude: /node_modules/
       }
     ]
   },
   resolve: {
-    extensions: [
-      '.js',
-      '.jsx'
-    ]
+    extensions: [".js", ".jsx"]
   },
-  plugins: [
-    new CompressionPlugin()
-  ]
-}
+  plugins: [new CompressionPlugin()]
+};
 
-module.exports = config;
+const client = {
+  entry: "./client/src/client.js",
+  output: {
+    path: path.resolve(__dirname, "client/dist"),
+    filename: "bundle.js"
+  }
+};
+
+const server = {
+  entry: "./client/src/server.js",
+  target: "node",
+  output: {
+    path: path.resolve(__dirname, "client/dist"),
+    filename: "bundle-server.js",
+    libraryTarget: "commonjs-module"
+  }
+};
+
+module.exports = [
+  Object.assign({}, common, client),
+  Object.assign({}, common, server)
+];
