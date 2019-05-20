@@ -14,7 +14,7 @@ class BestSellers extends React.Component {
   }
 
   componentDidMount() {
-    this.getData();
+    // this.getData();
   }
 
   configureRating(rating) {
@@ -34,13 +34,11 @@ class BestSellers extends React.Component {
       x = "1";
     }
     axios
-      .get(`${url.url}/api/items/${x}`)
+      .get(`${url.url}/api/items/3`)
       .then(data => {
-        //console.log(data);
         this.setState({
           productData: data.data
         });
-        //console.log(data.data[0].onList)
       })
       .catch(err => {
         console.log(err);
@@ -52,7 +50,7 @@ class BestSellers extends React.Component {
       <div className="best-sellers">
         <h2 className="header">Best Sellers</h2>
         <ul className="sellers-list">
-          {console.log(this.state.productData)}
+          {/* {console.log(this.state.productData)} */}
           {this.state.productData.map((items, key) => {
             return (
               <div>

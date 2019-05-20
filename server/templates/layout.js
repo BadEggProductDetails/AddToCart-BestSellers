@@ -19,10 +19,13 @@ module.exports = (title, app, props) => `
 ></script>
   <script src="/bundle.js"></script>
   <script>
-    // ReactDOM.hydrate(
-    // React.createElement(App, { data: JSON.parse(${"'" + props + "'"}) }),
-    //   document.getElementById('app')
-    // );
+    ReactDOM.hydrate(
+    React.createElement(App, 
+      ${JSON.stringify(props)} 
+      // { data: JSON.parse(${"'" + props + "'"})}
+      ),
+      document.getElementById('app')
+    );
   </script>
 </html>
 `;

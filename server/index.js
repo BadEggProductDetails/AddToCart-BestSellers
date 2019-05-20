@@ -29,7 +29,6 @@ app.use(morgan("dev"));
 
 //for benchmarking performance
 app.get("/loaderio*", (req, res, next) => {
-  // res.type("text/css");
   res.sendFile(
     path.join(
       __dirname + "/../server/loaderio-3932bfb07838612904f1b3891c4fd7d6.txt"
@@ -39,7 +38,6 @@ app.get("/loaderio*", (req, res, next) => {
 
 //get styling
 app.get("*.css", (req, res, next) => {
-  // res.type("text/css");
   res.sendFile(path.join(__dirname + "/../client/dist/styles.css"));
 });
 
@@ -100,7 +98,7 @@ app.get("/app/:id", async function(req, res) {
     let data = await getData(req.params.id);
     let props = { data: data };
     let component = renderComponent(props);
-    res.end(Layout(`Newegg Cart SSR`, component, JSON.stringify(data)));
+    res.end(Layout(`Newegg Cart SSR`, component, props));
   } catch (err) {
     console.log(err);
     res.send(err);
@@ -109,12 +107,9 @@ app.get("/app/:id", async function(req, res) {
 
 //query datebase for proudct info by product id
 app.get("/api/items/:id", async (req, res) => {
-  //test that api path exists
-  //console.log(req.params.id);
   try {
     const productID = req.params.id;
     let data = await getData(productID);
-    // data = { data: data };
     res.end(JSON.stringify(data));
   } catch (err) {
     console.log(err);
