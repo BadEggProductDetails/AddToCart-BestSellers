@@ -10,8 +10,6 @@ For this project, a team of developers each contributed individual components wh
 - [Node.js](https://github.com/nodejs/node) with the [Express.js](https://github.com/expressjs/express) framework
 - SQLite3 with the [sqlite3 node driver](https://www.npmjs.com/package/sqlite3)
 - [React](https://github.com/facebook/react) framework
-- Testing
-  - [Jest](https://github.com/facebook/jest)
 
 ## Project Overview
 
