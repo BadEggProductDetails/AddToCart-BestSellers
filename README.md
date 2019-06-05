@@ -1,8 +1,10 @@
 # Clone of Newegg Add To Cart and Best Sellers
 
-This repository contains the sourcecode for a single component of a clone of NewEgg.com, built with a microservice architecture. The component is designed as a full stack service and includes a database and web server which serves a client application and a restful api. 
+A single component of a clone of NewEgg.com, built with a microservice architecture. The component is designed as a full stack service and includes a web server, which serves a client application and a restful api. It was deleloped on a team where each engineer contributed an app that served via proxy as a single product details page. 
 
-For this project, a team of developers each contributed individual components which were combined into a full listing page. To view the complete listing application, check out the related listing page repo.
+# About the Project 
+
+This repository is the result of optimizations that were made on an inherited code base in an effort to prepare the system for web level traffic. Key optimizations include server side rendering, caching of popular database requests, bundle compresssion, and containerization for deployment on kubernetes.
 
 # Technical Information
 
