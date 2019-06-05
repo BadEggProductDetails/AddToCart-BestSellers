@@ -6,7 +6,7 @@ A single component of a clone of NewEgg.com, built with a microservice architect
 
 This repository is the result of optimizations that were made on an inherited code base in an effort to prepare the system for web level traffic. Key optimizations include server side rendering, caching of popular database requests, bundle compresssion, and containerization for deployment on kubernetes.
 
-![](https://github.com/BadEggProductDetails/AddToCart-BestSellers/blob/master/newegg1.gif =100x)
+![](https://github.com/BadEggProductDetails/AddToCart-BestSellers/blob/master/newegg1.gif = 100x)
 ![](https://github.com/BadEggProductDetails/AddToCart-BestSellers/blob/master/newegg2.gif)
 
 
