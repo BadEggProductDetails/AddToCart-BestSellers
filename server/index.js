@@ -68,18 +68,7 @@ const getData = async productID => {
     );
     if (newData.length > 0) return newData;
     else return;
-    // const cachedData = await redisClient.getAsync(productID);
-    // if (cachedData) return JSON.parse(cachedData);
-    // else {
-    //   const newData = await db.any(
-    //     `select * from product p
-    //       inner join competitors c
-    //       on c."productID" = p."productID"
-    //       where p."productID"=${productID}
-    //       `
-    //   );
-    //   await redisClient.setAsync(productID, JSON.stringify(newData));
-    //   return newData
+
   } catch (err) {
     console.log("QUERY: " + err);
     return err;
@@ -116,38 +105,6 @@ app.get("/api/items/:id", async (req, res) => {
     res.end();
   }
 
-  // try {
-  //   const cachedData = await redisClient.getAsync(productID);
-  //   if (cachedData) res.send(JSON.parse(cachedData));
-  //   else {
-  //     const newData = await db.any(
-  //       `select * from product p
-  //         inner join competitors c
-  //         on c."productID" = p."productID"
-  //         where p."productID"=${req.params.id}
-  //         `
-  //     );
-  //     await redisClient.setAsync(productID, JSON.stringify(newData));
-  //     res.send(newData);
-  //     res.end();
-  //   }
-  // } catch (err) {
-  //   console.log(err);
-  // }
-
-  // db.any(
-  //   `select * from product p
-  //   inner join competitors c
-  //   on c."productID" = p."productID"
-  //   where p."productID"=${req.params.id}
-  //   `
-  // )
-  //   .then(data => {
-  //     res.send(data);
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
 });
 
 app.listen(PORT, () => {
