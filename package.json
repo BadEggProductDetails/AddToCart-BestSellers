@@ -18,7 +18,7 @@
     "compression": "^1.7.3",
     "cors": "^2.8.5",
     "csv-stringify": "^5.3.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "faker": "^4.1.0",
     "forever": "^0.15.3",
     "jquery": "^3.3.1",
